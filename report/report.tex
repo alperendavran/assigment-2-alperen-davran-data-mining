@@ -26,7 +26,7 @@
 \begin{center}
 {\Large \textbf{Data Mining Assignment 2: Recommender Systems}}\\[0.4em]
 \normalsize Simple Movie Recommendation Report\\[0.3em]
-\small GitHub repository: \texttt{[add repository link here]}
+\small GitHub repository: \url{https://github.com/alperendavran/assigment-2-alperen-davran-data-mining}
 \end{center}
 
 \section*{1. Introduction}
@@ -77,6 +77,8 @@ The three models were:
 \textbf{SVD matrix factorization.} This model learns latent user and item factors together with bias terms. It is a standard matrix factorization approach and is often more suitable for sparse recommender data because it does not rely as directly on local user-user overlap \cite{koren2009,surprise-svd}.
 
 I reported \texttt{RMSE}, \texttt{Precision@10}, and \texttt{Recall@10} as the main metrics because they match the assignment most directly. I kept \texttt{HR@10} and \texttt{NDCG@10} as supporting metrics only.
+
+The general idea behind top-$N$ lists and precision/recall at $K$ matches the explanations in the Surprise FAQ \cite{surprise-faq}. My validation setup uses a temporal holdout and sampled negatives, so it is not identical to the library examples, but the metric definitions are consistent with that reference.
 
 \section*{4. Results And Discussion}
 The main validation results are shown in Table~\ref{tab:main-results}.
@@ -149,6 +151,8 @@ Among the tested models, SVD was the most suitable final personalized model for 
 
 I do not claim that this fully solves recommendation quality or cold-start. However, I think it is a logical and well-motivated solution for the scope of the assignment.
 
+As future work, a hybrid approach such as LightFM could combine collaborative signals with movie metadata (for example genres) \cite{lightfm}. That direction is appealing for cold-start items, but the official examples often emphasize implicit feedback, whereas this assignment also requires explicit rating error in the form of \texttt{RMSE}, so I kept the main experiments on Surprise-based models.
+
 \begin{thebibliography}{9}
 
 \bibitem{koren2009}
@@ -166,6 +170,16 @@ Surprise documentation.
 Surprise documentation.
 \newblock Basic algorithms.
 \newblock \url{https://surprise.readthedocs.io/en/stable/basic_algorithms.html}
+
+\bibitem{surprise-faq}
+Surprise documentation.
+\newblock FAQ: top-$N$ recommendations and precision/recall at $K$.
+\newblock \url{https://surprise.readthedocs.io/en/stable/FAQ.html}
+
+\bibitem{lightfm}
+LightFM documentation.
+\newblock Hybrid matrix factorization models.
+\newblock \url{https://making.lyst.com/lightfm/docs/home.html}
 
 \end{thebibliography}
 

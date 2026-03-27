@@ -1,6 +1,6 @@
 # Data Mining Assignment 2 - Recommender Systems
 
-GitHub repository: `[add repository link here]`
+GitHub repository: https://github.com/alperendavran/assigment-2-alperen-davran-data-mining
 
 ## 1. Introduction
 The goal of this assignment is to build and evaluate recommender models for movie recommendation, and then generate 10 recommendations for each user in `ratings_test.csv`. I focused on two things the assignment explicitly asks for:

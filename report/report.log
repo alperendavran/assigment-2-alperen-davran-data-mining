@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2026.2.28)  27 MAR 2026 21:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2026.2.28)  27 MAR 2026 21:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -420,13 +420,43 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
+9.
+
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+9.
+
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
+29.
+
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
+29.
+
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 29.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 29.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 29.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 3
 6.
 
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<report_assets/data_overview.png, id=4, 859.0275pt x 252.288pt>
+<report_assets/data_overview.png, id=5, 859.0275pt x 252.288pt>
 File: report_assets/data_overview.png Graphic file (type png)
 <use report_assets/data_overview.png>
 Package pdftex.def Info: report_assets/data_overview.png  used on input line 60
@@ -440,57 +470,27 @@ Package pdftex.def Info: report_assets/data_overview.png  used on input line 60
 r/local/texlive/2025basic/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/t
 exlive/2025basic/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <./report_assets/dat
 a_overview.png>]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 7
-3.
-
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
-3.
-
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-73.
-
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-73.
-
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 73.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 73.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 73.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 89.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 89.
-<report_assets/recommendation_stats.png, id=25, 859.0275pt x 252.288pt>
+<report_assets/recommendation_stats.png, id=27, 859.0275pt x 252.288pt>
 File: report_assets/recommendation_stats.png Graphic file (type png)
 <use report_assets/recommendation_stats.png>
 Package pdftex.def Info: report_assets/recommendation_stats.png  used on input 
-line 121.
+line 123.
 (pdftex.def)             Requested size: 489.10287pt x 143.64781pt.
 
 
 [2{/usr/local/texlive/2025basic/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/u
 sr/local/texlive/2025basic/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 155--159
+Underfull \hbox (badness 10000) in paragraph at lines 159--163
 []\T1/lmr/m/n/10 Y. Ko-ren, R. Bell, and C. Volin-sky.  Ma-trix fac-tor-iza-tio
 n tech-niques for rec-om-mender
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--159
+Underfull \hbox (badness 10000) in paragraph at lines 159--163
 \T1/lmr/m/n/10 sys-tems.  \T1/lmr/m/it/10 Com-puter\T1/lmr/m/n/10 , 42:30--37, 
 2009.  [][]$\T1/lmtt/m/n/10 https : / / www . chrisvolinsky . com / publication
 s /
@@ -499,7 +499,7 @@ s /
 
 
 [3 <./report_assets/recommendation_stats.png>]
-Underfull \hbox (badness 1194) in paragraph at lines 166--169
+Underfull \hbox (badness 1194) in paragraph at lines 170--173
 []\T1/lmr/m/n/10 Surprise doc-u-men-ta-tion.  Ba-sic al-go-rithms.  [][]$\T1/lm
 tt/m/n/10 https : / / surprise . readthedocs . io / en / stable / basic _
  []
@@ -515,13 +515,13 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 11012 strings out of 474662
- 178209 string characters out of 5751109
- 576532 words of memory out of 5000000
- 33886 multiletter control sequences out of 15000+600000
+ 11016 strings out of 474662
+ 178261 string characters out of 5751109
+ 577595 words of memory out of 5000000
+ 33888 multiletter control sequences out of 15000+600000
  598052 words of font info for 62 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,8n,79p,487b,559s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,483b,559s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></u
 sr/local/texlive/2025basic/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/lo
 cal/texlive/2025basic/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/t
@@ -531,10 +531,10 @@ asic/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2025basic/te
 xmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2025basic/texmf-d
 ist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025basic/texmf-dist/f
 onts/type1/public/lm/lmtt9.pfb>
-Output written on report.pdf (4 pages, 362461 bytes).
+Output written on report.pdf (4 pages, 367197 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
- 19 named destinations out of 1000 (max. 500000)
+ 122 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
+ 21 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

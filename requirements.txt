@@ -1,0 +1,8 @@
+# Python 3.9+ — use with: uv pip install -r requirements.txt
+# scikit-surprise is not yet compatible with NumPy 2.x; keep numpy<2
+
+numpy>=1.23.0,<2
+pandas>=2.0.0
+matplotlib>=3.7.0
+seaborn>=0.13.0
+scikit-surprise>=1.1.3
