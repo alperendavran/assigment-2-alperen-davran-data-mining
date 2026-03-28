@@ -37,7 +37,7 @@ The goal of this assignment is to build and compare recommender models for movie
 \item top-10 recommendation quality, measured mainly with \texttt{Precision@10} and \texttt{Recall@10}
 \end{itemize}
 
-I compared three models: a bias-based baseline, a user-based collaborative filtering model, and an SVD matrix factorization model. The final system also had to handle cold-start users, because some users in the test file do not appear in the training data.
+I compared a bias-based baseline, user-based collaborative filtering, and SVD matrix factorization, which matches what the assignment asks for. I also trained \texttt{NMF} in Surprise as a small extra matrix factorization experiment. The final system still had to handle cold-start users, because some users in the test file do not appear in the training data.
 
 \section*{2. Data Understanding And Preprocessing}
 The training data contains \texttt{97,801} ratings from \texttt{600} users on \texttt{9,680} movies. The user-item matrix is about \texttt{98.32\%} sparse, so most possible user-movie pairs are missing. This is important because sparse data usually makes neighborhood methods less stable and gives more room for latent-factor methods to help.
@@ -76,9 +76,15 @@ The three models were:
 
 \textbf{SVD matrix factorization.} This model learns latent user and item factors together with bias terms. It is a standard matrix factorization approach and is often more suitable for sparse recommender data because it does not rely as directly on local user-user overlap \cite{koren2009,surprise-svd}.
 
+\textbf{NMF (extra experiment).} Non-negative matrix factorization is another built-in option in Surprise. I used a biased variant with a small grid of regularization settings so that \texttt{RMSE} stayed comparable to \texttt{SVD}. I did \emph{not} use it for the final recommendations; it is only there to check that a second factorization model does not automatically win on my split.
+
 I reported \texttt{RMSE}, \texttt{Precision@10}, and \texttt{Recall@10} as the main metrics because they match the assignment most directly. I kept \texttt{HR@10} and \texttt{NDCG@10} as supporting metrics only.
 
+I did not want to rely on \texttt{RMSE} alone. The task is to suggest movies, and a model can still get reasonable rating error while putting relevant items too low in the ranked list. That is why I always look at top-$10$ behavior together with \texttt{RMSE}.
+
 The general idea behind top-$N$ lists and precision/recall at $K$ matches the explanations in the Surprise FAQ \cite{surprise-faq}. My validation setup uses a temporal holdout and sampled negatives, so it is not identical to the library examples, but the metric definitions are consistent with that reference.
+
+\textbf{Limitations.} The ranking step ranks each relevant item against random unseen negatives, not against the full catalog, so the \texttt{Precision@10} and \texttt{Recall@10} numbers are mainly useful for comparing models on the same protocol. The cold-start fallback for new users is a popularity list, so it is limited by design.
 
 \section*{4. Results And Discussion}
 The main validation results are shown in Table~\ref{tab:main-results}.
@@ -92,9 +98,10 @@ The main validation results are shown in Table~\ref{tab:main-results}.
 \toprule
 Model & RMSE & P@10 & R@10 & HR@10 & NDCG@10 & Time \\
 \midrule
-Baseline & 0.9389 & 0.0756 & 0.2255 & 0.5488 & 0.1761 & 0.3 \\
-User-Based CF & 0.9398 & 0.0370 & 0.1137 & 0.3114 & 0.0711 & 1.8 \\
-SVD & 0.9366 & 0.0638 & 0.1894 & 0.4883 & 0.1424 & 0.4 \\
+Baseline & 0.9389 & 0.0756 & 0.2255 & 0.4503 & 0.1761 & 0.3 \\
+User-Based CF & 0.9398 & 0.0370 & 0.1137 & 0.2927 & 0.0711 & 1.6 \\
+SVD & 0.9366 & 0.0638 & 0.1894 & 0.4071 & 0.1424 & 0.4 \\
+NMF (extra) & 0.9363 & 0.0101 & 0.0275 & 0.0807 & 0.0212 & 0.4 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -106,14 +113,16 @@ To make this trade-off more visible, I also compared the recommendation lists th
 \begin{table}[H]
 \centering
 \caption{Recommendation statistics over 50 sampled users}
+\label{tab:rec-stats}
 \small
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-Model & Coverage & Avg. popularity & Max repeat \\
+Model & Coverage & Avg. popularity & Max repeat & Avg. genres \\
 \midrule
-Baseline & 43 & 129.4 & 46 \\
-User-Based CF & 252 & 14.1 & 15 \\
-SVD & 160 & 88.1 & 17 \\
+Baseline & 43 & 129.4 & 46 & 10.1 \\
+User-Based CF & 252 & 14.1 & 15 & 10.0 \\
+SVD & 160 & 88.1 & 17 & 11.6 \\
+NMF & 156 & 9.9 & 33 & 8.7 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -121,12 +130,15 @@ SVD & 160 & 88.1 & 17 \\
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{report_assets/recommendation_stats.png}
-    \caption{The baseline is strong but highly concentrated, while SVD gives a broader recommendation set without collapsing to extremely niche items.}
+    \caption{List-level statistics over 50 sampled users (distinct genres counted per top-10 list from \texttt{movies.csv} tags).}
+    \label{fig:rec-stats}
 \end{figure}
 
-These results help explain the model behavior more clearly. The baseline repeats the same popular movies for many users. The user-based model is much more personalized, but its accuracy is clearly weaker. SVD sits between the two and gives a more convincing compromise.
+These results help explain the model behavior more clearly. Although the baseline was strong on some ranking metrics, its recommendation lists were much more concentrated and repeated the same popular items across users. Table~\ref{tab:rec-stats} and Figure~\ref{fig:rec-stats} make this concrete: low coverage and a very high max repeat for the baseline, compared with \texttt{SVD}.
 
-In this dataset, the user-based model suffers from the data structure itself: the matrix is about \texttt{98\%} sparse and the median movie has only \texttt{3} ratings, so user-user overlap is often too limited for stable neighborhoods. SVD gives the best \texttt{RMSE}, clearly better ranking performance than the user-based model, and much broader coverage than the baseline. For that reason, I selected SVD as the final personalized model.
+The user-based model is much more personalized, but its accuracy is clearly weaker. \texttt{SVD} sits between the two on popularity and coverage. \texttt{NMF} reached a similar \texttt{RMSE} after tuning, but its top-$10$ metrics were much worse on the same validation setup, so it did not look like a better choice for recommendations here.
+
+In this dataset, the user-based model suffers from the data structure itself: the matrix is about \texttt{98\%} sparse and the median movie has only \texttt{3} ratings, so user-user overlap is often too limited for stable neighborhoods. I did not choose \texttt{SVD} because it won every metric: the baseline is still competitive on some top-$10$ scores. I chose it because it offered the most reasonable compromise between personalization and predictive quality on this dataset: clearly better ranking than user-based \texttt{CF}, and much less concentrated lists than the baseline, while keeping a strong \texttt{RMSE}.
 
 I also tested a small hyperparameter search for SVD. However, it was optimized for \texttt{RMSE} on random folds and did not improve \texttt{Precision@10} or \texttt{Recall@10} on the temporal validation setup, so I did not use it as the final model.
 
@@ -137,7 +149,7 @@ The final pipeline handled two cases:
 
 \begin{itemize}
 \item \textbf{Warm users:} score all unseen movies with SVD and return the top \texttt{10}
-\item \textbf{Cold-start users:} return a popularity-based fallback list
+\item \textbf{Cold-start users:} return a fallback list based on global popularity (weighted rating)
 \end{itemize}
 
 The fallback was needed for \texttt{10} out of \texttt{100} test users. For those users, collaborative filtering cannot personalize recommendations because there is no interaction history. Instead of using a plain average rating, I used a weighted rating formula so that movies with only a few ratings would not look artificially strong.
@@ -145,9 +157,9 @@ The fallback was needed for \texttt{10} out of \texttt{100} test users. For thos
 This is not a perfect solution to the cold-start problem, but it is simple, transparent, and reasonable for the scope of the assignment.
 
 \section*{6. Conclusion}
-This dataset is challenging because it is highly sparse and strongly long-tail. Those properties make popularity-based recommendations look stronger than expected and make user-based neighborhoods less stable.
+This dataset is challenging because it is highly sparse and strongly long-tail. Those properties make models that mainly follow global popularity look stronger than expected on some metrics, and they make user-based neighborhoods less stable.
 
-Among the tested models, SVD was the most suitable final personalized model for this assignment. It had the strongest \texttt{RMSE}, better ranking results than user-based CF, and much broader recommendation coverage than the baseline. The final system therefore uses SVD for warm users and a weighted popularity fallback for cold-start users.
+For warm users, I did not pick \texttt{SVD} because it beat every number in Table~\ref{tab:main-results}. I picked it because it was the most reasonable compromise for me: more personalized lists than the baseline (as in Table~\ref{tab:rec-stats}), and more convincing ranking behavior than user-based \texttt{CF}, without pretending the problem is solved. The final system uses \texttt{SVD} for warm users and a weighted popularity fallback for cold-start users.
 
 I do not claim that this fully solves recommendation quality or cold-start. However, I think it is a logical and well-motivated solution for the scope of the assignment.
 
